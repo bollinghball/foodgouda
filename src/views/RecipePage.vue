@@ -21,20 +21,20 @@
             Step {{ currentStep }} of {{ recipe.instructions.length }}
           </div>
           <transition name="fade" mode="out-in">
-            <div v-if="currentStep === 0">
-              <h2 class="text-xl font-bold">{{ recipe.title }}</h2>
-              <h3 class="mt-2 font-semibold">Ingredients:</h3>
-              <ul class="list-disc list-inside">
-                <li v-for="(ingredient, index) in recipe.ingredients" :key="index">
-                  {{ ingredient }}
-                </li>
-              </ul>
-            </div>
-
-            
-            <div v-else>
-              <h3 class="font-semibold">Step {{ currentStep }}:</h3>
-              <p>{{ recipe.instructions[currentStep - 1] }}</p>
+            <div v-if="recipe.ingredients && recipe.instructions">
+              <div v-if="currentStep === 0">
+                <h2 class="text-xl font-bold">{{ recipe.title }}</h2>
+                <h3 class="mt-2 font-semibold">Ingredients:</h3>
+                <ul class="list-disc list-inside">
+                  <li v-for="(ingredient, index) in formattedIngredients" :key="index">
+                    {{ ingredient }}
+                  </li>
+                </ul>
+              </div>
+              <div v-else>
+                <h3 class="font-semibold">Step {{ currentStep }}:</h3>
+                <p>{{ formattedInstructions[currentStep - 1] }}</p>
+              </div>
             </div>
         </transition>
 
@@ -48,7 +48,7 @@
   </template>
   
   <script>
-  import { ref, onMounted, onUnmounted } from 'vue'
+  import { ref, computed, onMounted, onUnmounted } from 'vue'
   import { useRoute, useRouter } from 'vue-router'
   import { doc, getDoc } from 'firebase/firestore'
   import { db } from '../firebase'
@@ -57,7 +57,10 @@
   export default {
     components: { RecipeDetail },
     setup() {
-      const recipe = ref({})
+      const recipe = ref({
+        ingredients: [],
+        instructions: [],
+      })
       const isLandscape = ref(false)
       const isMobileView = ref(false)
       const currentStep = ref(0)
@@ -69,10 +72,12 @@
         const docRef = doc(db, 'recipes', recipeId)
         const docSnap = await getDoc(docRef)
         if (docSnap.exists()) {
-          recipe.value = { id: docSnap.id, ...docSnap.data() }
-        } else {
-          console.error('No such recipe!')
-        }
+          recipe.value = { id: docSnap.id, ...docSnap.data() };
+    console.log('Loaded recipe:', recipe.value); // Debugging line
+    console.log(docSnap.data()) 
+  } else {
+    console.error('No such recipe!');
+  }
       }
   
       const updateOrientation = () => {
@@ -95,6 +100,26 @@
       const closeDetail = () => {
         router.push('/')
       }
+
+    const formattedIngredients = computed(() => 
+      recipe.value.ingredients && Array.isArray(recipe.value.ingredients)
+        ? recipe.value.ingredients.map(ingredient => {
+            // Safely handle possible null or undefined fields
+            const amount = ingredient.amount ? ingredient.amount : '';
+            const unit = ingredient.unit ? ingredient.unit : '';
+            const name = ingredient.name ? ingredient.name : '';
+            const detail = ingredient.detail ? `(${ingredient.detail})` : '';
+
+            return `${amount} ${unit} ${name} ${detail}`.trim();
+          })
+        : []
+    );
+
+    const formattedInstructions = computed(() =>
+      recipe.value.instructions && Array.isArray(recipe.value.instructions)
+        ? recipe.value.instructions.map(instruction => instruction.description || '')
+        : []
+    );
   
       onMounted(() => {
         fetchRecipe()
@@ -108,6 +133,8 @@
   
       return {
         recipe,
+        formattedIngredients,
+        formattedInstructions,
         isLandscape,
         isMobileView,
         currentStep,

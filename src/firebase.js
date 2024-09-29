@@ -2,13 +2,11 @@ import { initializeApp } from 'firebase/app';
 import { getAuth, GoogleAuthProvider } from 'firebase/auth';
 import { getFirestore } from 'firebase/firestore';
 // import { getAnalytics } from "firebase/analytics";
-import { getStorage } from 'firebase/storage';
-
-const apiKey = process.env.GOOGLE_API_KEY;
+// import { getStorage } from 'firebase/storage';
 
 // Your Firebase configuration
 const firebaseConfig = {
-  apiKey,
+  apiKey: 'AIzaSyC_OWzWGjpM-7GUtIEaI0hqkPAntwxuPfw',
   authDomain: 'foodgouda.firebaseapp.com',
   projectId: 'foodgouda',
   storageBucket: 'foodgouda.appspot.com',
@@ -26,7 +24,7 @@ const db = getFirestore(app);
 // Initialize services
 // const analytics = getAnalytics(app);
 
-const storage = getStorage(app);
+// const storage = getStorage(app);
 
 // Initialize Firebase Auth
 const auth = getAuth(app);
