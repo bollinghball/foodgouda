@@ -7,8 +7,8 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        'display': ['Nunito', 'sans-serif'],
-        'body': ['Lora', 'serif' ],
+        'display': ['Poppins', 'sans-serif'],
+        'body': ['Open Sans', 'sans-serif' ],
       },
       colors: {
         // Configure your color palette here

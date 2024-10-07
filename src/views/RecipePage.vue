@@ -3,10 +3,13 @@
     <div>
       <div class="container mx-auto p-4">
         <div class="relative">
-          <button @click="closeDetail" class="absolute top-2 right-2 text-gray-500">X</button>
+          <button @click="closeDetail" class="absolute top-2 right-2 text-black font-display">X</button>
           
           <!-- Desktop or Portrait Mobile View -->
-          <div v-if="!isMobileView || !isLandscape">
+
+          
+          <!-- <div v-if="!isMobileView || !isLandscape"> -->
+            <div v-if="!isLandscape">
             <RecipeDetail :recipe="recipe" />
           </div>
           
@@ -23,21 +26,22 @@
           <transition name="fade" mode="out-in">
             <div v-if="recipe.ingredients && recipe.instructions">
               <div v-if="currentStep === 0">
-                <h2 class="text-xl font-bold">{{ recipe.title }}</h2>
-                <h3 class="mt-2 font-semibold">Ingredients:</h3>
-                <ul class="list-disc list-inside">
+                <h2 class="text-xl font-bold mt-4">{{ recipe.title }}</h2>
+                <p class="mt-2 font-body">{{ recipe.titleDescription }}</p>
+                <h3 class="mt-2 font-semibold text-left">Ingredients:</h3>
+                <ul class="list-disc list-inside text-left font-body">
                   <li v-for="(ingredient, index) in formattedIngredients" :key="index">
                     {{ ingredient }}
                   </li>
                 </ul>
+                <p class="font-body text-left mt-4"><strong>Note:</strong> {{ recipe.notes }}</p>
               </div>
               <div v-else>
-                <h3 class="font-semibold">Step {{ currentStep }}:</h3>
-                <p>{{ formattedInstructions[currentStep - 1] }}</p>
+                <h3 class="font-semibold mt-6">Step {{ currentStep }}:</h3>
+                <p class="mt-4 font-body text-left">{{ formattedInstructions[currentStep - 1] }}</p>
               </div>
             </div>
         </transition>
-
             <div class="mt-4 text-center text-sm text-gray-500">
               Swipe left/right to navigate steps
             </div>
@@ -48,7 +52,7 @@
   </template>
   
   <script>
-  import { ref, computed, onMounted, onUnmounted } from 'vue'
+  import { ref, computed, onMounted, onUnmounted, watch } from 'vue'
   import { useRoute, useRouter } from 'vue-router'
   import { doc, getDoc } from 'firebase/firestore'
   import { db } from '../firebase'
@@ -73,16 +77,27 @@
         const docSnap = await getDoc(docRef)
         if (docSnap.exists()) {
           recipe.value = { id: docSnap.id, ...docSnap.data() };
-    console.log('Loaded recipe:', recipe.value); // Debugging line
-    console.log(docSnap.data()) 
-  } else {
-    console.error('No such recipe!');
-  }
+            console.log('Loaded recipe:', recipe.value); // Debugging line
+            console.log(docSnap.data()) 
+          } else {
+            console.error('No such recipe!');
+          }
       }
+
+      watch(isLandscape, (newVal) => {
+        // When isLandscape changes to true, reset currentStep to 0
+        if (newVal) {
+          currentStep.value = 0
+        }
+      })
   
+      const isLastStep = computed(() => currentStep.value === recipe.value.instructions.length);
+
       const updateOrientation = () => {
         isLandscape.value = window.innerWidth > window.innerHeight
         isMobileView.value = window.innerWidth < 768 // Adjust breakpoint as needed
+        console.log(`Orientation updated: Landscape: ${isLandscape.value}, Mobile: ${isMobileView.value}`); // Debugging log
+
       }
   
       const onSwipeLeft = () => {
@@ -125,10 +140,12 @@
         fetchRecipe()
         updateOrientation()
         window.addEventListener('resize', updateOrientation)
+        window.addEventListener('orientationchange', updateOrientation);
       })
   
       onUnmounted(() => {
         window.removeEventListener('resize', updateOrientation)
+        window.removeEventListener('orientationchange', updateOrientation);
       })
   
       return {
@@ -141,6 +158,7 @@
         onSwipeLeft,
         onSwipeRight,
         closeDetail,
+        isLastStep
       }
     },
   }

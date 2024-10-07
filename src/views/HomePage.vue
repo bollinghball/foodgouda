@@ -2,12 +2,11 @@
 <template>
     <div class="container mx-auto px-4 py-6">
         <!-- Introductory Section -->
-        <section class="text-center mt-8 mb-8">
-          <h1 class="font-display uppercase text-4xl font-black text-fgBlue mb-4">Welcome to Food Gouda!</h1>
+        <!-- <section class="text-center mt-8 mb-8">
           <p class="font-body text-lg text-gray-700">
             Discover and save your favorite recipes with ease. Whether you're a beginner or a seasoned chef, Food Gouda has something for everyone.
           </p>
-        </section>
+        </section> -->
       <div class="container mx-auto p-4">
         <SearchBar v-model="searchQuery" />
         <RecipeGrid :recipes="filteredRecipes" />

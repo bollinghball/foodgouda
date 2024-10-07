@@ -1,0 +1,129 @@
+[
+    {
+    "calorieTotal": 376,
+    "createdAt": "2024-09-30T14:30:00.000Z",
+    "imageUrl": "https://firebasestorage.googleapis.com/v0/b/foodgouda.appspot.com/o/chickenfriedrice.png?alt=media",
+    "ingredients": [
+        {
+            "amount": 2,
+            "detail": "cooked (Jasmine or Basmati)",
+            "name": "white rice",
+            "unit": "cups"
+        },
+        {
+            "amount": 5,
+            "detail": "divided",
+            "name": "olive oil",
+            "unit": "tbsp"
+        },
+        {
+            "amount": 2,
+            "detail": null,
+            "name": "chicken breast",
+            "unit": "boneless, skinless"
+        },
+        {
+            "amount": 1,
+            "detail": "peeled and diced",
+            "name": "carrot",
+            "unit": null
+        },
+        {
+            "amount": 2,
+            "detail": "minced",
+            "name": "garlic",
+            "unit": "cloves"
+        },
+        {
+            "amount": 1,
+            "detail": null,
+            "name": "onion powder",
+            "unit": "tsp"
+        },
+        {
+            "amount": 1,
+            "detail": "frozen",
+            "name": "baby peas",
+            "unit": "cup"
+        },
+        {
+            "amount": 3,
+            "detail": "low-sodium",
+            "name": "soy sauce",
+            "unit": "tsp"
+        },
+        {
+            "amount": 1,
+            "detail": null,
+            "name": "onion powder",
+            "unit": "tsp"
+        },
+        {
+            "amount": null,
+            "detail": "to taste",
+            "name": "Kosher salt and ground black pepper",
+            "unit": null
+        },
+        {
+            "amount": 2,
+            "detail": "lightly beaten",
+            "name": "eggs",
+            "unit": "large"
+        }
+    ],
+    "instructions": [
+        {
+            "description": "Cook the rice according to the package instructions. I typically put 1 tbsp of oil in the bottom of a pan, stir in 1 cup of uncooked rice, add 2 2/3 cup water, bring to a boil, then put a lid on the pot and bring the heat down to low and let cook for 20 minutes.",
+            "step": 1
+        },
+        {
+            "description": "While the rice is cooking, place a large piece of plastic wrap on a cutting board. Place the two chicken breasts on one side of the plastic wrap and fold the other half on top of the chicken. Using a meat tenderizer, beat the chicken until thin, about 1/2 inch.",
+            "step": 2
+        },
+        {
+            "description": "Heat 1 tbsp of oil in a 12-inch nonstick skillet (I love cast iron!), over high heat for about 5 minutes or until smoking. Add the cooked rice, stirring occasionally for about 3 minutes, or until you notice the rice starting to turn a shade darker. Move the rice from the skillet to a small bowl and set aside.",
+            "step": 3
+        },
+        {
+            "description": "Using the same skillet, add 1 tbsp of oil and turn the heat to medium. Place the tenderized chicken in the skillet and cook for 3 minutes on each side. Once cooked, move the chicken to a cutting board and cut it into thin slices.",
+            "step": 4
+        },
+        {
+            "description": "Heat 1 tbsp of oil in the same skillet and add the carrots, garlic and 1 tsp onion powder. Don't stop stirring for about 2 or 3 minutes, or until the carrots are a little tender.",
+            "step": 5
+        },
+        {
+            "description": "Add the cooked rice you set aside to the mixture in the skillet, along with 1 cup of peas. Stir it all up to combine.",
+            "step": 6
+        },
+        {
+            "description": "Add the chicken slices, 3 tsp soy sauce and 1 tbsp of olive oil and stir for about 2 minutes until combined.",
+            "step": 7
+        },
+        {
+            "description": "Season to taste with salt and pepper.",
+            "step": 8
+        },
+        {
+            "description": "Push the rice mixture to the sides of the skillet, forming an empty circle in the middle. Add 1 tbsp of olive oil to the middle of the skillet.",
+            "step": 9
+        },
+        {
+            "description": "Add the two, lightly beaten eggs to the pan and scramble by stirring them to combine with the rice mixture for about 3 or 4 minutes.",
+            "step": 10
+        }
+    ],
+    "notes": "Always be sure your chicken has been cooked all the way through to 165F. You can store this dish in an airtight container for up to 3 days in the fridge or in the freezer for about 3 months.",
+    "servings": [
+        {
+            "amount": 4,
+            "unit": "servings"
+        }
+    ],
+    "skillLevel": "Easy",
+    "tags": ["Main Course", "Side Dish", "Chinese American"],
+    "title": "Legit Better Than Takeout Chicken Fried Rice",
+    "titleDescription": "You're craving fried rice. Sure, it's nice that this recipe is healthier than the real thing but that's not what you're concerned about, am I right? From one friend to another, I can promise you that this tastes JUST as good as takeout, if not better. Plus, you don't need all those fancy ingredients that you buy one time and never use again. This recipe is quick and easy, making it's way to your mouth to enjoy that much sooner.",
+    "updatedAt": "2024-09-30T14:30:00.000Z"
+    }
+ ]
